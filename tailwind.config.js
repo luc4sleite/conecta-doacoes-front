@@ -4,8 +4,14 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      flexGrow: {
+        3: '0.3'
+      },
+      height: {
+        0.1: '1px'
+      },
+    },
   },
   plugins: [],
 }
-
