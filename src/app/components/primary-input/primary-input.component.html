@@ -1,0 +1,14 @@
+<div>
+    <label class="text-black text-base text-start mb-3" [for]="inputName">{{ label }}</label>
+    <div class="w-full flex">
+        <input class="rounded-s-lg bg-gray-200 text-black text-base py-3 pl-5 w-full" 
+            [type]="type" 
+            [placeholder]="placeholder"
+            [value]="value"
+            (input)="onInput($event)"
+        />
+        <div class="rounded-e-lg p-3 bg-black">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

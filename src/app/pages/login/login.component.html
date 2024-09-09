@@ -1,1 +1,30 @@
-<app-default-login-layout></app-default-login-layout>
+<app-default-login-layout
+    title="Entrar"
+    primaryButtonText="Entrar"
+    secondaryButtonText="Cadastre-se"
+    (submit)="submit()"
+    (navigate)="navigate()"
+    [disablePrimaryButton]="!loginForm.valid"
+>
+    <form class="w-full flex flex-col gap-6 mb-8" [formGroup]="loginForm">
+        <app-primary-input
+            formControlName="email"
+            inputName="email"
+            type="email"
+            label="Email"
+            placeholder="Digite seu email"
+        >
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input
+            formControlName="password"
+            inputName="password"
+            type="password"
+            label="Senha"
+            placeholder="Digite seu senha"
+        >
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <span class="text-right text-sm underline text-gray-400">Esqueceu a senha?</span>
+    </form>
+</app-default-login-layout>
