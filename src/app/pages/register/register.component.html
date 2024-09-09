@@ -11,7 +11,7 @@
             formControlName="name"
             inputName="name"
             type="text"
-            label="Email"
+            label="Nome"
             placeholder="Digite seu nome"
         >
             <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
@@ -25,6 +25,21 @@
         >
             <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
         </app-primary-input>
+        <div>
+            <label class="text-black text-base text-start mb-3" for="role">Perfil:</label>
+            <div class="w-full flex">
+                <select 
+                    class="rounded-s-lg bg-gray-200 text-black text-base py-3 pl-5 w-full" 
+                    formControlName="role"
+                >
+                    <option value="" disabled selected>Selecione seu perfil</option>
+                    <option *ngFor="let option of roles" [value]="option.value">{{ option.label }}</option>
+                </select>
+                <div class="rounded-e-lg p-3 bg-black">
+                    <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+                </div>
+            </div>
+        </div>
         <app-primary-input
             formControlName="password"
             inputName="password"
