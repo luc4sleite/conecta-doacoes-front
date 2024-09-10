@@ -5,8 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../services/login.service';
 import { DefaultLoginLayoutComponent } from '../../components/default-login-layout/default-login-layout.component';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
-import { PrimarySelectInputComponent } from '../../components/primary-select-input/primary-select-input.component';
 import { CommonModule } from '@angular/common';
+import { User } from '../../classes/user';
 
 interface RegisterForm {
   name: FormControl;
@@ -23,7 +23,6 @@ interface RegisterForm {
     DefaultLoginLayoutComponent,
     ReactiveFormsModule,
     PrimaryInputComponent,
-    PrimarySelectInputComponent,
     CommonModule
   ],
   templateUrl: './register.component.html',
@@ -52,13 +51,27 @@ export class RegisterComponent {
   }
 
   submit() {
+    let user: User = {
+      nome: this.registerForm.value.name,
+      email: this.registerForm.value.email,
+      role: this.registerForm.value.role,
+    };
     this.loginService.register(
       this.registerForm.value.name,
       this.registerForm.value.email,
       this.registerForm.value.role,
       this.registerForm.value.password
     ).subscribe({
-      next: () => this.toastService.success('Cadastro feito com sucesso'),
+      next: () => {
+        this.toastService.success('Cadastro realizado com sucesso');
+        if(this.registerForm.value.role === 'user') {
+          this.router.navigate(['login'], { state: user });
+        } else if (this.registerForm.value.role === 'ong') {
+          this.router.navigate(['ong-register'], { state: user });
+        } else {
+          this.router.navigate(['company-register'], { state: user });
+        }
+      },
       error: () => this.toastService.error('Erro ao fazer cadastro')
     });
   }

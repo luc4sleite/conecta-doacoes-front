@@ -1,0 +1,71 @@
+<app-default-register-layout [userName]="dadosRecebidos.nome"
+    descricao="Antes de começar a receber doações, precisamos saber um pouco mais sobre a sua ONG, preencha as informações abaixo para prosseguirmos:"
+    primaryButtonText="Cadastrar" secondaryButtonText="Voltar" (submit)="submit()" (navigate)="navigate()"
+    [disablePrimaryButton]="!ongForm.valid">
+    <form class="flex flex-col gap-6 w-2/3 mt-6" [formGroup]="ongForm">
+        <h3 class="font-semibold">Dados ONG:</h3>
+        <app-primary-input formControlName="nome" inputName="nome" type="text" label="Nome da ONG"
+            placeholder="Digite o nome da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="cnpj" inputName="cnpj" type="text" label="CNPJ"
+            placeholder="Digite o CNPJ da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="email" inputName="email" type="email" label="Email"
+            placeholder="Digite o email da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="telefone" inputName="telefone" type="text" label="Telefone"
+            placeholder="Digite o telefone da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="descricao" inputName="descricao" type="text" label="Descrição"
+            placeholder="Digite a descrição da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <div class="flex flex-col gap-4 w-full" [formGroup]="ongForm">
+            <label for="tipoDoacao">Tipo de Doação</label>
+            <div class="flex gap-2 items-center rounded-lg bg-gray-200 text-black text-base py-3 pl-5 w-full" *ngFor="let option of tipoDoacao">
+                <input class="bg-black text-white" type="checkbox" [id]="option" [value]="option" (change)="onCheckboxChange($event)"
+                    [checked]="selectedOptions.includes(option)" />
+                <label class="w-full h-full" [for]="option">{{ option }}</label>
+            </div>
+            <div *ngIf="ongForm.get('tipoDoacao')?.touched && ongForm.get('tipoDoacao')?.invalid">
+                <small class="text-danger">Selecione ao menos uma opção de doação.</small>
+            </div>
+        </div>
+    </form>
+    <form class="flex flex-col gap-6 w-2/3 mt-6" [formGroup]="enderecoForm">
+        <h3 class="font-semibold">Endereço:</h3>
+        <app-primary-input formControlName="cep" inputName="cep" type="text" label="CEP"
+            placeholder="Digite o CEP da sua ONG" (blur)="buscarEndereco()">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="logradouro" inputName="logradouro" type="text" label="Logradouro"
+            placeholder="Digite o logradouro da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="numero" inputName="numero" type="text" label="Número"
+            placeholder="Digite o número da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="complemento" inputName="complemento" type="text" label="Complemento"
+            placeholder="Digite o complemento da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="bairro" inputName="bairro" type="text" label="Bairro"
+            placeholder="Digite o bairro da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="cidade" inputName="cidade" type="text" label="Cidade"
+            placeholder="Digite a cidade da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+        <app-primary-input formControlName="estado" inputName="estado" type="text" label="Estado"
+            placeholder="Digite o estado da sua ONG">
+            <img class="w-5 h-5" src="/assets/icons/mail.svg" alt="mail">
+        </app-primary-input>
+    </form>
+
+</app-default-register-layout>

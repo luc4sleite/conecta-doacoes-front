@@ -6,6 +6,7 @@
             [placeholder]="placeholder"
             [value]="value"
             (input)="onInput($event)"
+            (blur)="onBlurEvent($event)"
         />
         <div class="rounded-e-lg p-3 bg-black">
             <ng-content></ng-content>

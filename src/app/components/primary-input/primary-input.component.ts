@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 type InputTypes = 'text' | 'password' | 'email';
@@ -24,10 +24,17 @@ export class PrimaryInputComponent implements ControlValueAccessor{
   @Input() placeholder: string = "";
   @Input() label: string = "";
   @Input() inputName: string = "";
+  @Output('blur') onBlur = new EventEmitter();
 
   value: string = "";
   onChange: any = () => {};
   onTouch: any = () => {};
+
+
+  onBlurEvent(event: Event){
+    this.onBlur.emit(event);
+  }
+
 
   onInput(event: Event){
     const value = (event.target as HTMLInputElement).value;
